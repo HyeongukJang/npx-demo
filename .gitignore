@@ -1,0 +1,16 @@
+*~
+*.swp
+*.swo
+__pycache__
+
+rvx_*.sh
+rvx_*.log
+rvx_*.cfg
+rvx_*.bat
+rvx_python_config.mh
+.rvx_*
+python3.bat
+Path-*.txt
+
+rvx_binary
+rvx_platform_example
