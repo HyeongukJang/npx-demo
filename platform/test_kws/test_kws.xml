@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<rvx>
+	<platform>
+		<name>test_kws</name>
+		<status>described</status>
+		<spec>
+			<define>
+				<name>sram_size</name>
+				<value>128kB</value>
+			</define>
+      <define>
+        <name>num_spi_readymade</name>
+        <value>1</value>
+      </define>
+      <define>
+        <name>include_oled_bw</name>
+        <value type="bool">True</value>
+      </define>
+      <define>
+        <name>include_oled_rgb</name>
+        <value type="bool">True</value>
+      </define>
+      <define>
+        <name>include_timer</name>
+        <value type="bool">True</value>
+      </define>
+      <define>
+        <name>include_plic</name>
+        <value type="bool">True</value>
+      </define>
+      <define>
+        <name>include_slow_dram</name>
+        <value type="bool">True</value>
+      </define>
+			<define>
+				<name>include_spi_flash</name>
+				<value type="bool">True</value>
+			</define>
+			<define>
+				<name>num_led_checker</name>
+				<value>1</value>
+			</define>
+    </spec>
+
+    <ip_instance>
+      <name>i_dca_neugemm00</name>
+      <library_name>dca_neugemm_mmiox_mlsu</library_name>
+      <parameter>
+        <id>TENSOR_PARA</id>
+        <value>32</value>
+      </parameter>
+      <parameter>
+        <id>MATRIX_SIZE_PARA</id>
+        <value>8</value>
+      </parameter>
+      <parameter>
+        <id>INST_FIFO_DEPTH</id>
+        <value>8</value>
+      </parameter>
+    </ip_instance>
+
+		<ip_instance>
+			<name>i_main_core</name>
+			<library_name>rvc_rocket_big</library_name>
+    </ip_instance>
+
+    <clock_info>
+      <define>
+        <name>clk_core</name>
+        <value type="dec">100000000</value>
+      </define>
+      <define>
+        <name>clk_dca_core</name>
+        <value type="dec">100000000</value>
+      </define>
+    </clock_info>
+
+		<sw_define>
+      <use_reuse_memory_allocator type="bool">True</use_reuse_memory_allocator>
+      <caching_most type="bool">True</caching_most>
+			<use_profiling type="bool">True</use_profiling>
+      <silent_for_profiling type="bool">False</silent_for_profiling>
+    </sw_define>
+
+    <gpio>
+      <name>btnc</name>
+      <width>1</width>
+    </gpio>
+    <gpio>
+      <name>btnd</name>
+      <width>1</width>
+    </gpio>
+    <gpio>
+      <name>btnl</name>
+      <width>1</width>
+    </gpio>
+    <gpio>
+      <name>btnr</name>
+      <width>1</width>
+    </gpio>
+    <gpio>
+      <name>btnu</name>
+      <width>1</width>
+    </gpio>
+
+	</platform>
+</rvx>
