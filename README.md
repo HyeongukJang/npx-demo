@@ -1,1 +1,1 @@
-# npx-tutorials-sogang
+# npx-demo
