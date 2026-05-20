@@ -70,14 +70,6 @@ int main()
 
     while(1)
     {
-#if 0
-      sprintf(sample_fname, "%s_sample_%03d.bin", app_name, sample_index);
-      if(!fakefile_exists(sample_fname))
-        break;
-      printf_subsection(SKIP_SIM, "Iteration %d", sample_index);
-      npx_sample = npx_load_sample(sample_fname, pre_fname);
-      sample_index++;
-#else
       printf("\nPress the push button BTNC(E18) for Inference!\n");
       display_init();
       while(1)
@@ -94,28 +86,11 @@ int main()
           break;
       }
 
-#if 1 // crop center 
       int window_size = arducam_image->height;
       window_image = image_generate_center_window(arducam_image, window_size, window_size, window_image);
       npx_sample = npx_make_tensor_from_image(window_image);
       free(window_image->window_info);
       //image_free(window_image);
-#else
-      npx_sample = npx_make_tensor_from_image(arducam_image);
-#endif
-#endif
-
-#if 0
-#if 1
-      resized = npx_tensor_resize(npx_sample->tensor, resized, 32, 32);
-      inference_image = npx_make_rgb565image_from_tensor(resized);
-      //inference_image = npx_make_rgb565image_from_tensor(npx_sample->tensor);
-      oled_rgb_draw_rvx_image(inference_image);
-      image_free(inference_image);
-#else
-      oled_rgb_draw_rvx_image(window_image);
-#endif
-#endif
 
       const npx_layerio_tsseq_t *input_tsseq = npx_preprocess(pre_fname, net, npx_sample->tensor, npx_sample->scaled);
       npx_network_reset(net);
